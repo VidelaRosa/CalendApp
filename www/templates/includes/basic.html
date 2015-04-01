@@ -1,0 +1,321 @@
+{% load staticfiles %}
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CalendApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'index' %}">CalendApp</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+            <!-- Events Menu -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-calendar fa-fw"></i>  <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-messages">
+                <li>
+                  <a href="{% url 'create_event' %}" class="text-center">Crear Evento</a>
+                </li>
+                <li class="divider"></li>
+                {% for event in list_events %}
+                <li>
+                  <a href="{% url 'edit_event' event.pk %}">
+                    <div>
+                      <strong>{{ event.title }}</strong>
+                      <span class="text-muted">
+                        <em>{{ event.date }} {{ event.time|default_if_none:""|time:"H:i" }}</em>
+                      </span>
+                    </div>
+                    <div> 
+                      {{ event.description }}
+                    </div>
+                    <center><div>
+                      <span class="text-muted">
+                        {% if event.importance == 1 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif event.importance == 2 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif event.importance == 3 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif event.importance == 4 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif event.importance == 5 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                        {% endif %}
+                        </span>
+                    </div></center>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                {% endfor %}
+                <li>
+                  <a class="text-center" href="{% url 'events' %}">
+                    <strong>Ver todos los eventos</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Jobs Menu -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-check-square-o fa-fw"></i>  <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-tasks">
+                <li>
+                  <a href="{% url 'create_job' %}" class="text-center">Crear Tarea</a>
+                </li>
+                <li class="divider"></li>
+                {% for job in list_jobs %}
+                  <li>
+                    <a href="{% url 'edit_job' job.pk %}">
+                      <div>
+                        <strong>{{ job.description }}</strong>
+                        <span class="text-muted">
+                        {% if job.importance == 1 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif job.importance == 2 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif job.importance == 3 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif job.importance == 4 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle-o"></i>
+                        {% elif job.importance == 5 %}
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                          <i class="fa fa-circle"></i>
+                        {% endif %}
+                        </span>
+                      </div>
+                      <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ job.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ job.progress }}%"></div>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                {% endfor %}
+                <li>
+                  <a class="text-center" href="{% url 'jobs' %}">
+                    <strong>Ver todas las tareas</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+                
+            <!-- Meeting Menu -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-coffee fa-fw"></i>  <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-alerts">
+                <li>
+                  <a href="{% url 'create_meeting' %}" class="text-center">Crear Cita</a>
+                </li>
+                <li class="divider"></li>
+                {% for meet in list_meetings %}
+                <li>
+                  <a href="{% url 'edit_meeting' meet.pk %}">
+                    <div>
+                      <strong>{{ meet.person }}</strong>
+                      <span class="text-muted">
+                        <em>{{ meet.date }} {{ meet.time|default_if_none:""|time:"H:i"  }}</em>
+                      </span>
+                    </div>
+                    <center><span class="text-muted">
+                    {% if meet.importance == 1 %}
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                    {% elif meet.importance == 2 %}
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                    {% elif meet.importance == 3 %}
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle-o"></i>
+                      <i class="fa fa-circle-o"></i>
+                    {% elif meet.importance == 4 %}
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle-o"></i>
+                    {% elif meet.importance == 5 %}
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                      <i class="fa fa-circle"></i>
+                    {% endif %}
+                    </span></center>
+                  </a>
+                </li>
+                <li class="divider"></li>
+                {% endfor %}
+                <li>
+                  <a class="text-center" href="{% url 'meetings' %}">
+                    <strong>Ver todas las citas</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!-- Profile Menu -->
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <img class="avatar" src="{{ account.avatar.url }}">  <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                <li>
+                  <a href="{% url 'profile' %}"><i class="fa fa-user fa-fw"></i> 
+                  {% if user.first_name != "" %}
+                    {{ user.first_name }} {{ user.last_name }}
+                  {% else %}
+                    Perfil
+                  {% endif %}
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="{% url 'userLogout' %}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-right" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+            <input type='text' name="date" class="form-control" id="searchdatepicker" placeholder="Buscar fecha">
+            <button class="btn btn-success">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navigation -->
+    
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar sidebar-wrapper col-sm-3 col-md-2">
+        <ul class="nav nav-sidebar">
+          <li>
+            <a href="{% url 'index' %}"><i class="fa fa-home fa-fw"></i> Inicio</a>
+          </li>
+          <li>
+            <a href="{% url 'create_event' %}"><i class="fa fa-calendar fa-fw"></i> Crear Evento</a>
+          </li>
+          <li>
+            <a href="{% url 'create_job' %}"><i class="fa fa-check-square-o fa-fw"></i> Crear Tarea</a>
+          </li>
+          <li>
+            <a href="{% url 'create_meeting' %}"><i class="fa fa-coffee fa-fw"></i> Crear Cita</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="page-content-wrapper"></div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            {% block content %}
+                
+            {% endblock content %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "js/moment.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/bootstrap-datetimepicker.js" %}"></script>
+
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static "js/holder.js" %}"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
+
+     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static "js/custom.js" %}"></script>
+  </body>
+</html>

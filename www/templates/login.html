@@ -1,0 +1,86 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CalendApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-theme.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/bootstrap-datetimepicker.min.css" %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
+  </head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">CalendApp: Login</a>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Iniciar sesión</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <fieldset>
+
+                            <!-- Text input-->
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">@</span>
+                                <input id="username" name="username" type="text" class="form-control" placeholder="Username" required="">
+                            </div>
+
+                            <!-- Password input-->
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">#</span>
+                                <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control" required="">
+                            </div>
+
+                            <center><button type="submit" class="btn btn-success btn-block">Entrar</button></center>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <center><h4 style="color: red">{{ errors|default_if_none:"" }}</h4></center>
+            <center><h4>¿No tiene cuenta? <a href={% url 'register' %}>Regístrese aquí</a></h4></center>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "js/moment.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/bootstrap-datetimepicker.js" %}"></script>
+
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static "js/holder.js" %}"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <script src="{% static "js/ie-emulation-modes-warning.js" %}"></script>
+
+     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="{% static "js/custom.js" %}"></script>
+</body>
+</html>

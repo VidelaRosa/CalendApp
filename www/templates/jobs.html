@@ -1,0 +1,47 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1 class="page-header">Tareas</h1>
+    {% for job in all_jobs %}
+        <a href="{% url 'edit_job' job.pk %}"><div class="col-md-3 bordered">
+            <p style="color: black">{{ job.description  }}</p>
+            <center><span class="text-muted">
+            {% if job.importance == 1 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif job.importance == 2 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif job.importance == 3 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif job.importance == 4 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif job.importance == 5 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            </span></center>
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ job.progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ job.progress }}%"></div>
+            </div>
+        </div></a>
+        <div class="col-md-1"></div>
+    {% endfor %}
+{% endblock content %}

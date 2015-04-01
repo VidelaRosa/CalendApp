@@ -1,0 +1,50 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1 class="page-header">Citas</h1>
+    {% for meeting in all_meetings %}
+        <a href="{% url 'edit_meeting' meeting.pk %}"><div class="col-md-3 bordered">
+            <h4 style="color: black">{{ meeting.person }}</h4>
+            <span class="text-muted">
+                <em>{{ meeting.date }}
+                {% if meeting.time != null %} 
+                    a las {{ meeting.time|default_if_none:""|time:"H:i" }}
+                {% endif %}</em>
+            </span>
+            <center><span class="text-muted">
+            {% if meeting.importance == 1 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 2 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 3 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 4 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 5 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            </span></center>
+        </div></a>
+        <div class="col-md-1"></div>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1 class="page-header">Eventos</h1>
+    {% for event in all_events %}
+        <a href="{% url 'edit_event' event.pk %}"><div class="col-md-3 bordered">
+            <h4 style="color: black">{{ event.title }}</h4>
+            <span class="text-muted">
+                <em>{{ event.date }}
+                {% if event.time != null %} 
+                    a las {{ event.time|default_if_none:""|time:"H:i" }}
+                {% endif %}</em>
+            </span>
+            <p style="color: black">{{ event.description }}</p>
+            <center><span class="text-muted">
+            {% if event.importance == 1 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 2 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 3 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 4 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 5 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            </span></center>
+        </div></a>
+        <div class="col-md-1"></div>
+    {% endfor %}
+{% endblock content %}

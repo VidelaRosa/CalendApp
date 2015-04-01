@@ -1,0 +1,47 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+<br>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Crea una nueva tarea
+            </div>
+            <div class="panel-body">
+                <form role="form" action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea name="description" class="form-control" rows="3" placeholder="Descripción" style="resize: none">{{ job.description }}</textarea>   
+                    </div>
+                    <div class="from-group">
+                        <select class="form-control" id="importance" name="importance">
+                            <option value=1 {% if job.importance == 1 %}
+                                selected 
+                            {% endif %}>Poco importante</option>
+                            <option value=2 {% if job.importance == 2 %}
+                                selected 
+                            {% endif %}>Normal</option>
+                            <option value=3 {% if job.importance == 3 %}
+                                selected 
+                            {% endif %}>Importante</option>
+                            <option value=4 {% if job.importance == 4 %}
+                                selected 
+                            {% endif %}>Muy importante</option>
+                            <option value=5 {% if job.importance == 5 %}
+                                selected 
+                            {% endif %}>Súper importante</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="number" name="progress" class="form-control" min="0" max="100" placeholder="Progreso" value="{{ job.progress }}">
+                    </div>
+                    <br>
+                    <center><button type="submit" class="btn btn-success"><i class="fa fa-pencil"></i> Editar</button>
+                    <a href="{% url 'delete_event' job.pk %}" type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Borrar </a></center>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+    <h1 class="page-header">Eventos y citas para el {{ day }}</h1>
+    <div class="col-md-5 col-sm-4">
+        <h4>Eventos</h4>
+        {% for event in events_by_day %}
+            <a href="{% url 'edit_event' event.pk %}"><div class="col-md-8 bordered">
+            <h4 style="color: black">{{ event.title }}</h4>
+            <span class="text-muted">
+                <em>{{ event.date }}
+                {% if event.time != null %} 
+                    a las {{ event.time|default_if_none:""|time:"H:i" }}
+                {% endif %}</em>
+            </span>
+            <p style="color: black">{{ event.description }}</p>
+            <center><span class="text-muted">
+            {% if event.importance == 1 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 2 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 3 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 4 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif event.importance == 5 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            </span></center>
+        </div></a>
+        {% endfor %}
+    </div>
+    <div class="span6">
+  </div>
+    <div class="col-md-5 col-sm-4">
+        <h4>Citas</h4>
+        {% for meeting in meetings_by_day %}
+        <a href="{% url 'edit_meeting' meeting.pk %}"><div class="col-md-8 bordered">
+            <h4 style="color: black">{{ meeting.person }}</h4>
+            <span class="text-muted">
+                <em>{{ meeting.date }}
+                {% if meeting.time != null %} 
+                    a las {{ meeting.time|time:"H:i" }}
+                {% endif %}</em>
+            </span>
+            <center><span class="text-muted">
+            {% if meeting.importance == 1 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 2 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 3 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 4 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle-o"></i>
+            {% elif meeting.importance == 5 %}
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i>
+            {% endif %}
+            </span></center>
+        </div></a>
+        {% endfor %}
+    </div>
+{% endblock content %}

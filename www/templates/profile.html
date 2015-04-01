@@ -1,0 +1,49 @@
+{% extends "includes/basic.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-6">
+        <u><h2>Tu perfil</h2></u>
+    </div>
+</div>
+<br>
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Información</div>
+                <div class="panel-body">
+                    <p><strong>Username: </strong></p>
+                    <input id='username' type="text" name="username" class="form-control" aria-describedby="basic-addon1" value='{{ user.username}}'>
+                    <br>
+                    <p><strong>Nombre: </strong></p>
+                    <input id='first_name' type="text" name="first_name" class="form-control" aria-describedby="basic-addon1" value='{{ user.first_name }}'>
+                    <br>
+                    <p><strong>Apellidos: </strong></p>
+                    <input id='last_name' type="text" name="last_name" class="form-control" aria-describedby="basic-addon1" value='{{ user.last_name}}'>
+                    <br>
+                    <p><strong>Email: </strong></p>
+                    <input id='email' type="text" name="email" class="form-control" aria-describedby="basic-addon1" value='{{ user.email}}'>
+                    <p><strong>Password: </strong></p>
+                    <input id='password' type="password" name="password" class="form-control" aria-describedby="basic-addon1" value='{{ user.password}}'>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <div class="panel-body">
+            <center><img class="img-thumbnail gthumbnail" src="{{ account.avatar.url }}" data-holder-rendered="true"></center>
+                <br>
+                <input type="file" name='avatar' id='avatar' class="picture">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-lg-4"></div>
+    <button class="btn btn-success" type="submit">Actualizar Info</button>
+</form>
+{% endblock content %}
