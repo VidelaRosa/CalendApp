@@ -116,7 +116,8 @@ def profile(request):
         user.first_name = request.POST["first_name"]
         user.last_name = request.POST["last_name"]
         user.email = request.POST["email"]
-        user.set_password(request.POST["password"])
+        if request.POST["password"] != "":
+            user.set_password(request.POST["password"])
         user.save()
         if "avatar" in request.FILES:
             acc.avatar = request.FILES["avatar"]
