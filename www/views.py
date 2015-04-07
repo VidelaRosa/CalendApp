@@ -392,7 +392,7 @@ def search(request):
 def days_of_month(date):
     aux = date - datetime.timedelta(date.weekday())
     if aux.month == date.month:
-        aux = aux - datetime.timedelta(7 * ((aux.day / 7)))
+        aux = aux - datetime.timedelta(7 * ((aux.day / 7) + 1))
     days = []
     months = []
     if aux.day != 1:
