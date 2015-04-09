@@ -22,6 +22,7 @@ HOW TO USE
     `python manage.py runserver`
 
  - Try it on 127.0.0.1:8000
+ 
 ------------------------
 
 ![alt tag](http://s24.postimg.org/ii1ufv36d/Captura_de_pantalla_2015_04_01_a_las_15_24_10.png)
