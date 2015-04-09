@@ -5,7 +5,7 @@ Copyright 2015 Victor de la Rosa Sanchez
 vicdelarosa92@gmail.com
 
 ========================
-# HOW TO USE
+HOW TO USE
 ------------------------
  - Install pip
     - Download pip on https://bootstrap.pypa.io/get-pip.py
@@ -22,7 +22,6 @@ vicdelarosa92@gmail.com
     `python manage.py runserver`
 
  - Try it on 127.0.0.1:8000
-========================
 
 ![alt tag](http://s24.postimg.org/ii1ufv36d/Captura_de_pantalla_2015_04_01_a_las_15_24_10.png)
 
