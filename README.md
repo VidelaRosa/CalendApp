@@ -1,9 +1,6 @@
 # CalendApp
 Web Calendar build with Django, Bootstrap and JQuery
 
-Copyright 2015 Victor de la Rosa Sanchez
-vicdelarosa92@gmail.com
-
 ========================
 HOW TO USE
 ------------------------
